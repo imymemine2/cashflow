@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.MainController">
+   <VBox layoutX="14.0" layoutY="14.0" prefHeight="672.0" prefWidth="773.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="14.0">
+      
+      <MenuBar>
+        <menus>
+          <Menu text="機能">
+            <items>
+              <MenuItem onAction="#showCategoryManagement" text="カテゴリ管理" />
+              <MenuItem onAction="#showPredictionScreen" text="予測・シミュレーション" /> 
+            </items>
+          </Menu>
+          <Menu text="ヘルプ">
+            <items>
+              <MenuItem text="バージョン情報" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      
+      <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="家計簿メイン画面" />
+      
+      <VBox spacing="8.0" style="-fx-border-color: #007bff; -fx-padding: 15; -fx-border-width: 2;">
+         <Label style="-fx-font-weight: bold;" text="新しい取引の登録" />
+         <GridPane hgap="10.0" vgap="10.0">
+            <columnConstraints>
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="60.0" prefWidth="70.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="150.0" prefWidth="200.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="70.0" minWidth="60.0" prefWidth="70.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="150.0" prefWidth="200.0" />
+               <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0" prefWidth="120.0" />
+            </columnConstraints>
+            
+            <Label text="日付：" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <DatePicker fx:id="datePicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            
+            <Label text="金額：" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+            <TextField fx:id="amountField" promptText="金額（例: 5000）" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+            
+            <Label text="種別：" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <ComboBox fx:id="typeCombo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <Label text="カテゴリ：" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="categoryCombo" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            
+            <Button onAction="#handleAddTransaction" text="取引を登録" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         </GridPane>
+         <Label fx:id="messageLabel" textFill="RED" />
+      </VBox>
+      
+      <Separator />
+      
+      <HBox alignment="CENTER_LEFT" spacing="30.0">
+          <Label style="-fx-font-weight: bold; -fx-font-size: 16px;" text="現在の残高：" />
+          <Text fx:id="balanceText" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-fill: GREEN;" text="0 円" />
+      </HBox>
+      
+      <Separator />
+      
+      <VBox VBox.vgrow="SOMETIMES">
+         <Label style="-fx-font-weight: bold;" text="月別収支の集計" />
+         <TableView fx:id="summaryTable" prefHeight="200.0">
+            <columns>
+               <TableColumn fx:id="monthColumn" prefWidth="120.0" text="月" />
+               <TableColumn fx:id="totalIncomeColumn" prefWidth="120.0" text="収入合計" />
+               <TableColumn fx:id="totalExpenseColumn" prefWidth="120.0" text="支出合計" />
+               <TableColumn fx:id="netProfitColumn" prefWidth="120.0" text="純利益" />
+            </columns>
+         </TableView>
+      </VBox>
+      
+      <Separator />
+
+      <VBox VBox.vgrow="ALWAYS">
+         <Label style="-fx-font-weight: bold;" text="最近の取引" />
+         <TableView fx:id="transactionTable" VBox.vgrow="ALWAYS">
+            <columns>
+               <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+               <TableColumn fx:id="dateColumn" prefWidth="100.0" text="日付" />
+               <TableColumn fx:id="amountColumn" prefWidth="120.0" text="金額" />
+               <TableColumn fx:id="typeColumn" prefWidth="80.0" text="種別" />
+               <TableColumn fx:id="categoryNameColumn" prefWidth="150.0" text="カテゴリ" />
+               <TableColumn fx:id="actionColumn" minWidth="100.0" prefWidth="120.0" text="操作" />
+            </columns>
+         </TableView>
+         <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0">
+            <Button onAction="#handleDeleteTransaction" text="選択した取引を削除" />
+         </HBox>
+      </VBox>
+   </VBox>
+</AnchorPane>

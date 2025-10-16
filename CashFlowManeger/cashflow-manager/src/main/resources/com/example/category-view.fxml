@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableColumn?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CategoryController">
+   <VBox layoutX="14.0" layoutY="14.0" prefHeight="472.0" prefWidth="573.0" spacing="10.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="14.0">
+      <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="カテゴリ管理" />
+      
+      <VBox spacing="5.0" style="-fx-border-color: #cccccc; -fx-padding: 10;">
+         <Label style="-fx-font-weight: bold;" text="新しいカテゴリの追加" />
+         <HBox alignment="CENTER_LEFT" prefHeight="30.0" spacing="10.0">
+            <Label text="名称：" />
+            <TextField fx:id="categoryNameField" promptText="食費、給与など" HBox.hgrow="ALWAYS" />
+            <Label text="種別：" />
+            <ComboBox fx:id="categoryTypeCombo" prefWidth="150.0" />
+            <Button onAction="#handleAddCategory" text="追加" />
+         </HBox>
+         <Label fx:id="messageLabel" textFill="RED" />
+      </VBox>
+      
+      <VBox VBox.vgrow="ALWAYS">
+         <Label style="-fx-font-weight: bold;" text="登録済みカテゴリ" />
+         <TableView fx:id="categoryTable" prefHeight="300.0" prefWidth="573.0" VBox.vgrow="ALWAYS">
+            <columns>
+               <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
+               <TableColumn fx:id="nameColumn" prefWidth="250.0" text="カテゴリ名" />
+               <TableColumn fx:id="typeColumn" prefWidth="150.0" text="種別" />
+               <TableColumn fx:id="actionColumn" minWidth="100.0" prefWidth="120.0" text="操作" />
+            </columns>
+         </TableView>
+         <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0">
+            <Button onAction="#handleDeleteCategory" text="選択したカテゴリを削除" />
+         </HBox>
+      </VBox>
+   </VBox>
+</AnchorPane>
