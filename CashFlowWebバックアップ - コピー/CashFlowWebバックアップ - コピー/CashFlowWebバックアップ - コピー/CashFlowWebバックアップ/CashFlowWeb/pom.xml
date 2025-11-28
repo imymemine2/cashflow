@@ -17,6 +17,11 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!-- Webアプリケーション（REST API）の基盤 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
